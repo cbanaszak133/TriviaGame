@@ -1,0 +1,42 @@
+
+
+.jumbotron{
+	background-image:url("../images/paper.png");
+}
+
+.jumbotron h1{
+	text-align:center;
+}
+
+body{
+	font-family: 'Cinzel Decorative', cursive;
+	background-image:url("../images/paper.png");
+}
+
+#board h3{
+	margin: 0 auto;
+}
+
+#board h4{
+	margin: 0 auto;
+}
+
+#board button{
+	margin: 0 auto;
+}
+
+#board{
+	text-align:center;
+}
+
+span{
+	font-size: 24px;
+}
+
+#questions{
+	font-size:24px;
+}
+
+a:hover{
+	background-color:#fffcef
+}
