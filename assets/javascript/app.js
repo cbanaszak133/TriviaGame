@@ -17,8 +17,8 @@ $(document).ready(function(){
 		answer3: "Gandalf",
 		answer4: "Faramir",
 		correctAnswer: "Arathorn",
-		correctImg: "https://i.pinimg.com/originals/ea/82/68/ea8268f7d33be6b98cacce82589944b7.gif",
-		incorrectImg: "https://i.pinimg.com/originals/40/cc/f9/40ccf93c17fad8c719947c07f4566e9a.gif"
+		correctImg: "../TriviaGame/assets/images/aragornSmiling.gif",
+		incorrectImg: "../TriviaGame/assets/images/aragornOops.gif"
 	}
 
 	var q2 = {
@@ -27,7 +27,10 @@ $(document).ready(function(){
 		answer2: "Sauron",
 		answer3: "Frodo",
 		answer4: "Bilbo",
-		correctAnswer: "Sauron"
+		correctAnswer: "Sauron",
+		correctImg: "../TriviaGame/assets/images/sauronCorrect.gif",
+		incorrectImg: "../TriviaGame/assets/images/sauronIncorrect.gif"
+		
 	}
 
 	var q3 = {
@@ -36,10 +39,34 @@ $(document).ready(function(){
 		answer2: "Saruman",
 		answer3: "Mithrandir",
 		answer4: "Lothlorien",
-		correctAnswer: "Mithrandir"
+		correctAnswer: "Mithrandir",
+		correctImg: "../TriviaGame/assets/images/gandalfSmiling.gif",
+		incorrectImg: "../TriviaGame/assets/images/gandalfCage.gif "
 	}
 
-	var questions = [q1, q2, q3];
+	var q4 = {
+		question: "The Fellowship of the Ring is forced to travel through which mine?",
+		answer1: "Mines of Friendship",
+		answer2: "Mines of Moria",
+		answer3: "Mines of Helms Deep",
+		answer4: "Mines of Rohan",
+		correctAnswer: "Mines of Moria",
+		correctImg: "../TriviaGame/assets/images/moriaCorrect.gif",
+		incorrectImg: "../TriviaGame/assets/images/moriaIncorrect.gif"
+	}
+
+	var q5 = {
+		question: "The forest where Merry and Pippin meet Treebeard and the ents is called:",
+		answer1: "Lothlorien",
+		answer2: "Mirkwood",
+		answer3: "Fangorn",
+		answer4: "Pelennor Fields",
+		correctAnswer: "Fangorn",
+		correctImg: "../TriviaGame/assets/images/treebeardCorrect.gif",
+		incorrectImg: "../TriviaGame/assets/images/treebeardIncorrect.gif"
+	}
+
+	var questions = [q1, q2, q3, q4, q5];
 
 	function question(){
 		$("#board").html("<div id='question'>");
@@ -58,11 +85,12 @@ $(document).ready(function(){
 			}
 		}, 1000);
 
-		$("#question").append("<div id='questions'>" + questions[currentQ].question + "<br />");
-		$("#questions").append("<a value='questions[currentQ].answer1'>" + questions[currentQ].answer1 + "<br />");
-		$("#questions").append("<a value='questions[currentQ].answer2'>" + questions[currentQ].answer2 + "<br />");
-		$("#questions").append("<a value='questions[currentQ].answer3'>" + questions[currentQ].answer3 + "<br />");
-		$("#questions").append("<a value='questions[currentQ].answer4'>" + questions[currentQ].answer4 + "<br />");
+		$("#question").append("<h2>" + questions[currentQ].question + "<br />" );
+
+		$("#question").append("<a value='questions[currentQ].answer1'>" + questions[currentQ].answer1 + "<br />");
+		$("#question").append("<a value='questions[currentQ].answer2'>" + questions[currentQ].answer2 + "<br />");
+		$("#question").append("<a value='questions[currentQ].answer3'>" + questions[currentQ].answer3 + "<br />");
+		$("#question").append("<a value='questions[currentQ].answer4'>" + questions[currentQ].answer4 + "<br />" + "<br />");
 
 		$("#question").append("<span>  Time remaining: </span>");
 		$("#question").append("<span id='time'>" + time);
@@ -87,8 +115,25 @@ $(document).ready(function(){
 
 			numCorrect++;
 		}
+		else if(answer == ""){
+			$("#board").html("<h1> Time's up! </h1>");
+
+			var correctAns = $("<h2>")
+			correctAns.text("The correct answer was: " + questions[currentQ].correctAnswer);
+			$("#board").append(correctAns);
+
+			var img = $("<img>")
+			img.attr("src", questions[currentQ].incorrectImg);
+			$("#board").append(img);
+
+			numIncorrect++;
+		}
 		else{
 			$("#board").html("<h1> Incorrect! </h1>");
+
+			var correctAns = $("<h2>")
+			correctAns.text("The correct answer was: " + questions[currentQ].correctAnswer);
+			$("#board").append(correctAns);
 
 			var img = $("<img>")
 			img.attr("src", questions[currentQ].incorrectImg);
@@ -115,6 +160,7 @@ $(document).ready(function(){
 		var d = $("<div>");
 		d.attr("id", "wins-losses");
 		currentQ = 0;
+		time = 30;
 
 		d.text("Wins: " + numCorrect + " Losses: " + numIncorrect);
 

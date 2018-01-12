@@ -37,6 +37,23 @@ span{
 	font-size:24px;
 }
 
+a{
+	font-size:24px;
+}
+
 a:hover{
 	background-color:#fffcef
+}
+
+#board img{
+	height: 200px;
+	width: 400px;
+}
+
+#image img{
+	height:280px;
+	width:400px;
+
+	display:block;
+	margin:auto;
 }
